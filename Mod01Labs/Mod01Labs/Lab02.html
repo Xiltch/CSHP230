@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Lab02</title>
+    <script type="text/javascript">
+        function readText(objForm) {
+            var firstNumber = parseInt(objForm.txtFirstNumber.value);
+            var secondNumber = parseInt(objForm.txtSecondNumber.value);
+            var result = firstNumber + secondNumber;
+            alert("Sum: " + result.toString());
+        }
+    </script>
+</head>
+<body>
+    <h1>Add Numbers</h1>
+
+    <p>Submit two numbers and display the sum</p>
+
+    <form>
+        <input text="text" name="txtFirstNumber" />&nbsp; Enter your first number<br />
+        <input text="text" name="txtSecondNumber" />&nbsp; Enter your second number<br />
+        <input text="button" value="Submit" onclick="readText(this.form)" />
+    </form>
+</body>
+</html>
