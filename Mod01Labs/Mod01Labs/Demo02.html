@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Demo02</title>
+    <script type="text/javascript">
+        function readText(objForm) {
+            strTestVar = objForm.txtUserName.value;
+            alert("You type: " + strTestVar);
+        }
+    </script>
+</head>
+<body>
+    <h1>This is a Test Form</h1>
+    
+    <p>The input tag provides several controls allowing a paged to be interactive</p>
+
+    <form>
+        <input text="text" name="txtUserName" />&nbsp; Enter your name<br />
+        <input text="button" value="Submit" onclick="readText(this.form)" />
+    </form>
+</body>
+</html>
