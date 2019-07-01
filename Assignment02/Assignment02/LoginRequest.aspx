@@ -8,22 +8,28 @@
     <style type="text/css">
         
         .form {
-            width: 400px;
+            width: 580px;
         }
 
         .fieldRow {
             float: left;
+            clear: both;
             margin: 5px 0px 5px 0px;
         }
 
         .formFields {
             float: left;
-            clear: both;
         }
 
         .formActions {
+            margin: 8px 0 8px 0;
             float: left;
             clear: both;
+        }
+
+        .formSubmitButton {
+            width: 100px;
+            border-radius: 8px;
         }
 
         .formFeedback {
@@ -38,12 +44,12 @@
         }
 
         .formInputField {
-            width: 200px;
+            width: 380px;
             float: left;
         }
 
         .formInputFieldArea {
-            width: 100% !important;
+            width: 530px;
             float: left;
             clear: both;
         }
