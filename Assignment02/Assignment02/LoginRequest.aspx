@@ -1,12 +1,34 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" %>
 
 <!DOCTYPE html>
+<script runat="server">
+
+    protected void uxSubmit_Click(object sender, EventArgs e)
+    {
+        string userName = uxName.Text;
+        string email = uxEmailAddress.Text;
+        string login = uxLoginName.Text;
+        string reason = uxReason.Text;
+
+        string lb = Environment.NewLine;
+        string output = MapPath("~/App_Data/requests.txt");        
+        using (var target = new System.IO.StreamWriter(output, true))
+        {
+            target.Write(String.Format($"User: {userName}{lb}Email: {email}{lb}Login: {login}{lb}Reason: {reason}{lb}{lb}{lb}"));            
+        }
+
+        uxFormFeedback.Visible = true;
+
+    }
+
+
+</script>
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Login Request Page</title>
     <style type="text/css">
-        
         .form {
             width: 580px;
         }
@@ -53,7 +75,6 @@
             float: left;
             clear: both;
         }
-
     </style>
 </head>
 <body>
@@ -72,14 +93,14 @@
                 <asp:Label class="formLabel" ID="Label4" runat="server" Text="Reason for access?"></asp:Label>
             </div>
             <div class="fieldRow">
-                <asp:TextBox class="formInputFieldArea" ID="TextBox1" runat="server" TextMode="MultiLine" Rows="10"></asp:TextBox>
+                <asp:TextBox class="formInputFieldArea" ID="uxReason" runat="server" TextMode="MultiLine" Rows="10"></asp:TextBox>
             </div>
         </div>
         <div class="formActions">
-            <asp:Button class="formSubmitButton" ID="uxSubmit" runat="server" Text="Button" />
+            <asp:Button class="formSubmitButton" ID="uxSubmit" runat="server" Text="Button" OnClick="uxSubmit_Click" />
         </div>
-        <div class="formFeedback" id="uxFormFeedback">
-            A Password will be sent to you once a staff member has manually gone over your request
+        <div class="formFeedback">
+            <asp:Label ID="uxFormFeedback" runat="server" Text="A Password will be sent to you once a staff member has manually gone over your request" Visible="False"></asp:Label>
         </div>
     </form>
 </body>
