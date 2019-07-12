@@ -10,7 +10,7 @@
                 string strOledbConnection = @"Provider=SQLOLEDB;
                                     Data Source=.\SQLExpress;
                                     Integrated Security=SSPI;
-                                    Initial Catalog=Masterz";
+                                    Initial Catalog=Master";
                 objOleCon.ConnectionString = strOledbConnection;
                 objOleCon.Open();
 
