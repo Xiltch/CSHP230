@@ -1,24 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" %>
 
 <!DOCTYPE html>
-<script runat="server">
-
-    protected void uxHome_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("Home.aspx");
-    }
-
-    protected void uxRequestLogin_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("RequestLogin.aspx");
-    }
-
-    protected void uxAbout_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("AboutUs.aspx");
-    }
-</script>
-
 
 <html>
 <head runat="server">
@@ -26,29 +8,29 @@
     <asp:ContentPlaceHolder ID="ContentPlaceHolderHead" runat="server">
     </asp:ContentPlaceHolder>
     <style type="text/css">
-        .navigationMenu > input {
+        .navigationMenu > a {
             border: solid;
-            border-width: 1px;
+            border-width: 2px;
             border-radius: 3px;
             border-color: orange;
             background-color: blue;
             color: white;
             padding: 9px;
             font-weight: bold;
+            text-decoration: none;
         }
 
         .navigationMenu {
             margin: 5px;
+            padding: 10px;
         }
     </style>
 </head>
 <body>
-    <div>
-        <form class="navigationMenu" id="navigationForm" runat="server">
-            <asp:Button ID="uxHome" runat="server" Text="Home" OnClick="uxHome_Click" />
-            <asp:Button ID="uxRequestLogin" runat="server" Text="Request a Login" OnClick="uxRequestLogin_Click" />
-            <asp:Button ID="uxAbout" runat="server" Text="About Us" OnClick="uxAbout_Click" />
-        </form>
+    <div class="navigationMenu">
+        <asp:HyperLink runat="server" NavigateUrl="Home.aspx">Home</asp:HyperLink>
+        <asp:HyperLink runat="server" NavigateUrl="RequestLogin.aspx">Request a Login</asp:HyperLink>
+        <asp:HyperLink runat="server" NavigateUrl="AboutUs.aspx">About</asp:HyperLink>
     </div>
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolderBody" runat="server">
