@@ -10,16 +10,66 @@
             string login = uxLoginName.Text;
             string reason = uxReason.Text;
 
-            if (saveRequest(userName, email, login, reason))
+            switch (saveRequest(userName, email, login, reason))
             {
-                uxFormFeedback.Visible = true;
-                resetForm();
+                case 0:
+                    showFeedback("There was problem completing the request, please check your details and try again");
+                    break;
+
+                case 1:
+                    showFeedback("A Password will be sent to you once a staff member has manually gone over your request");
+                    resetForm();
+                    break;
+
+                case -1:
+                    // something went wrong
+                    break;
+
             }
         }
 
-        private bool saveRequest(string userName, string email, string login, string reason)
+        private int saveRequest(string userName, string email, string login, string reason)
         {
-            return true;
+            System.Data.OleDb.OleDbConnection sqlConnection = new System.Data.OleDb.OleDbConnection();
+            System.Data.OleDb.OleDbCommand sqlCommand = null;
+            try
+            {   //1. Make a Connection
+                string connectionString = @"Provider=SQLOLEDB;
+                                    Data Source=Twinkies\SQLExpress;
+                                    Integrated Security=SSPI;
+                                    Initial Catalog=Master";
+
+                connectionString = @"Provider=SQLOLEDB;
+                                    Data Source=twinkies\SQLExpress;
+                                    Persist Security Info=True;
+                                    User ID=cshp230;
+                                    Password=1303393";
+
+                sqlConnection.ConnectionString = connectionString;
+                sqlConnection.Open();
+
+                //2. Issue a Command
+                sqlCommand = new System.Data.OleDb.OleDbCommand("dbo.pInsLogins", sqlConnection);
+
+                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+                sqlCommand.Parameters.AddWithValue("@Name", userName);
+                sqlCommand.Parameters.AddWithValue("@EmailAddress", email);
+                sqlCommand.Parameters.AddWithValue("@LoginName", login);
+                sqlCommand.Parameters.AddWithValue("@ReasonForAccess", reason);
+
+                var result = sqlCommand.ExecuteNonQuery();
+
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                showFeedback(ex.Message);
+                return -1;
+            }
+            finally { sqlConnection.Close(); } //4. Run clean up code
+
         }
 
         private void resetForm()
@@ -28,6 +78,12 @@
             uxEmailAddress.Text = "";
             uxLoginName.Text = "";
             uxReason.Text = "";
+        }
+
+        private void showFeedback(string message)
+        {
+            uxFormFeedback.Text = message;
+            uxFormFeedback.Visible = true;
         }
 
     </script>
@@ -109,7 +165,7 @@
             <asp:Button class="formSubmitButton" ID="uxSubmit" runat="server" Text="Submit" OnClick="uxSubmit_Click" />
         </div>
         <div class="formFeedback">
-            <asp:Label ID="uxFormFeedback" runat="server" Text="A Password will be sent to you once a staff member has manually gone over your request" Visible="False"></asp:Label>
+            <asp:Label ID="uxFormFeedback" runat="server" Text="" Visible="False"></asp:Label>
         </div>
     </form>
 </asp:Content>
