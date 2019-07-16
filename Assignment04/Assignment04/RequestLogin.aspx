@@ -10,18 +10,29 @@
             string login = uxLoginName.Text;
             string reason = uxReason.Text;
 
-            string lb = Environment.NewLine;
-            string output = MapPath("~/App_Data/requests.txt");
-            using (var target = new System.IO.StreamWriter(output, true))
+            if (saveRequest(userName, email, login, reason))
             {
-                target.Write(String.Format($"User: {userName}{lb}Email: {email}{lb}Login: {login}{lb}Reason: {reason}{lb}{lb}{lb}"));
+                uxFormFeedback.Visible = true;
+                resetForm();
             }
-
-            uxFormFeedback.Visible = true;
         }
+
+        private bool saveRequest(string userName, string email, string login, string reason)
+        {
+            return true;
+        }
+
+        private void resetForm()
+        {
+            uxName.Text = "";
+            uxEmailAddress.Text = "";
+            uxLoginName.Text = "";
+            uxReason.Text = "";
+        }
+
     </script>
 
-        <style type="text/css">
+    <style type="text/css">
         .form {
             width: 580px;
         }
@@ -72,7 +83,8 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" runat="server">
-     <form class="form" id="uxLoginForm" runat="server">
+    <h1>Request new login</h1>
+    <form class="form" id="uxLoginForm" runat="server">
         <div class="formFields">
             <div class="fieldRow">
                 <asp:Label class="formLabel " ID="Label1" runat="server" Text="Name"></asp:Label>
