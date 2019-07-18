@@ -68,6 +68,8 @@
     <Content Include="AboutUs.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="RequestLogin.aspx" />
+    <Content Include="resources\Gary.png" />
+    <Content Include="resources\spongebob.jpeg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
