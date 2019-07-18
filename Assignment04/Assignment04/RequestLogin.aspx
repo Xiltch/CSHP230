@@ -35,15 +35,9 @@
             try
             {   //1. Make a Connection
                 string connectionString = @"Provider=SQLOLEDB;
-                                    Data Source=Twinkies\SQLExpress;
+                                    Data Source=.\SQLExpress;
                                     Integrated Security=SSPI;
-                                    Initial Catalog=Master";
-
-                connectionString = @"Provider=SQLOLEDB;
-                                    Data Source=twinkies\SQLExpress;
-                                    Persist Security Info=True;
-                                    User ID=cshp230;
-                                    Password=1303393";
+                                    Initial Catalog=ASPNetHomework";
 
                 sqlConnection.ConnectionString = connectionString;
                 sqlConnection.Open();
