@@ -5,26 +5,14 @@
 <html>
 <head runat="server">
     <title></title>
+
+    <link rel="stylesheet" href="Content/bootstrap.min.css" />
+    <script src="Scripts/jquery-3.4.1.min.js"></script>
+    <script src="Scripts/popper.min.js"></script>
+    <script src="Scripts/bootstrap.bundle.min.js"></script>
+
     <asp:ContentPlaceHolder ID="ContentPlaceHolderHead" runat="server">
     </asp:ContentPlaceHolder>
-    <style type="text/css">
-        .navigationMenu > a {
-            border: solid;
-            border-width: 2px;
-            border-radius: 3px;
-            border-color: orange;
-            background-color: blue;
-            color: white;
-            padding: 9px;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .navigationMenu {
-            margin: 5px;
-            padding: 10px;
-        }
-    </style>
 </head>
 <body>
     <div class="navigationMenu">
