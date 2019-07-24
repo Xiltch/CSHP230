@@ -39,6 +39,12 @@
                                     Integrated Security=SSPI;
                                     Initial Catalog=Master";
 
+                connectionString = @"Provider=SQLOLEDB;
+                                    Data Source=twinkies\SQLExpress;
+                                    Persist Security Info=True;
+                                    User ID=cshp230;
+                                    Password=1303393";
+
                 sqlConnection.ConnectionString = connectionString;
                 sqlConnection.Open();
 
@@ -81,83 +87,67 @@
         }
 
     </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
 
-    <style type="text/css">
-        .form {
-            width: 580px;
-        }
+            var hasName = false;
+            var hasEmail = false;
+            var hasLogin = false;
+            var hasReason = false;
 
-        .fieldRow {
-            float: left;
-            clear: both;
-            margin: 5px 0px 5px 0px;
-        }
+            $("#<%=uxName.ClientID%>").on("change paste keyup", function () {
+                hasName = $(this).val() !== "";
+                toggleSubmitButton();
+            });
 
-        .formFields {
-            float: left;
-        }
+            $("#<%=uxEmailAddress.ClientID%>").on("change paste keyup", function () {
+                hasEmail = $(this).val() !== "";
+                toggleSubmitButton();
+            });
 
-        .formActions {
-            margin: 8px 0 8px 0;
-            float: left;
-            clear: both;
-        }
+            $("#<%=uxLoginName.ClientID%>").on("change paste keyup", function () {
+                hasLogin = $(this).val() !== "";
+                toggleSubmitButton();
+            });
 
-        .formSubmitButton {
-            width: 100px;
-            border-radius: 8px;
-        }
+            $("#<%=uxReason.ClientID%>").on("change paste keyup", function () {
+                hasReason = $(this).val() !== "";
+                toggleSubmitButton();
+            });
 
-        .formFeedback {
-            float: left;
-            clear: both;
-        }
+            function toggleSubmitButton() {
+                var isEnabled = hasName && hasEmail && hasLogin && hasReason;
+                $("#<%=uxSubmit.ClientID%>").prop('disabled', !isEnabled);
+            }
+        });
 
-        .formLabel {
-            width: 150px;
-            float: left;
-            clear: left;
-        }
-
-        .formInputField {
-            width: 380px;
-            float: left;
-        }
-
-        .formInputFieldArea {
-            width: 530px;
-            float: left;
-            clear: both;
-        }
-    </style>
+    </script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderBody" runat="server">
     <h1>Request new login</h1>
-    <form class="form" id="uxLoginForm" runat="server">
-        <div class="formFields">
-            <div class="fieldRow">
-                <asp:Label class="formLabel " ID="Label1" runat="server" Text="Name"></asp:Label>
-                <asp:TextBox class="formInputField" ID="uxName" runat="server"></asp:TextBox>
-            </div>
-            <div class="fieldRow">
-                <asp:Label class="formLabel" ID="Label2" runat="server" Text="Email Address"></asp:Label>
-                <asp:TextBox class="formInputField" ID="uxEmailAddress" runat="server"></asp:TextBox>
-            </div>
-            <div class="fieldRow">
-                <asp:Label class="formLabel" ID="Label3" runat="server" Text="Login Name"></asp:Label>
-                <asp:TextBox class="formInputField" ID="uxLoginName" runat="server"></asp:TextBox>
-            </div>
-            <div class="fieldRow">
-                <asp:Label class="formLabel" ID="Label4" runat="server" Text="Reason for access?"></asp:Label>
-            </div>
-            <div class="fieldRow">
-                <asp:TextBox class="formInputFieldArea" ID="uxReason" runat="server" TextMode="MultiLine" Rows="10"></asp:TextBox>
-            </div>
+    <form style="width: 400px; margin: 10px;" id="uxLoginForm" runat="server">
+        <div class="form-group">
+            <label for="<%=uxName%>">Name</label>
+            <asp:TextBox CssClass="form-control" ID="uxName" runat="server"></asp:TextBox>
         </div>
-        <div class="formActions">
-            <asp:Button class="formSubmitButton" ID="uxSubmit" runat="server" Text="Submit" OnClick="uxSubmit_Click" />
+        <div class="form-group">
+            <label for="<%=uxEmailAddress%>">Email Address</label>
+            <asp:TextBox CssClass="form-control" ID="uxEmailAddress" runat="server"></asp:TextBox>
         </div>
+        <div class="form-group">
+            <label for="<%=uxLoginName%>">Login Name</label>
+            <asp:TextBox CssClass="form-control" ID="uxLoginName" runat="server"></asp:TextBox>
+        </div>
+        <div class="form-group">
+            <label for="<%=uxReason%>">Reason for access?</label>
+            <asp:TextBox CssClass="form-control" ID="uxReason" runat="server" TextMode="MultiLine" Rows="5"></asp:TextBox>
+        </div>
+
+        <div class="form-group">
+            <asp:Button CssClass="btn btn-primary" ID="uxSubmit" runat="server" Text="Submit" OnClick="uxSubmit_Click" Enabled="False" />
+        </div>
+
         <div class="formFeedback">
             <asp:Label ID="uxFormFeedback" runat="server" Text="" Visible="False"></asp:Label>
         </div>
