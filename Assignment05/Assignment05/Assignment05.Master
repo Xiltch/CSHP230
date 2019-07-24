@@ -15,11 +15,26 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <div class="navigationMenu">
-        <asp:HyperLink runat="server" NavigateUrl="Home.aspx">Home</asp:HyperLink>
-        <asp:HyperLink runat="server" NavigateUrl="RequestLogin.aspx">Request a Login</asp:HyperLink>
-        <asp:HyperLink runat="server" NavigateUrl="AboutUs.aspx">About</asp:HyperLink>
-    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">CSHP230 Assignment</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <asp:HyperLink runat="server" NavigateUrl="Home.aspx" CssClass="nav-link">Home</asp:HyperLink>
+                </li>
+                <li class="nav-item">
+                    <asp:HyperLink runat="server" NavigateUrl="RequestLogin.aspx" CssClass="nav-link">Request a Login</asp:HyperLink>
+                </li>
+                <li class="nav-item">
+                    <asp:HyperLink runat="server" NavigateUrl="AboutUs.aspx" CssClass="nav-link">About</asp:HyperLink>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolderBody" runat="server">
         </asp:ContentPlaceHolder>
