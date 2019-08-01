@@ -21,7 +21,6 @@
         which reads the information from the session and displays it.
     </p>
     <form runat="server">
-
         <asp:Label ID="Label1" runat="server" Text="Value to Store: "></asp:Label>
         <asp:TextBox ID="uxInputValue" runat="server"></asp:TextBox>
         <br />

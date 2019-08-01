@@ -98,9 +98,10 @@
     <Content Include="Assignment06.Master" />
     <Content Include="Home.aspx" />
     <Content Include="HiddenInput.aspx" />
-    <Content Include="Cookie.aspx" />
+    <Content Include="CookieSet.aspx" />
     <Content Include="SessionSet.aspx" />
     <Content Include="SessionGet.aspx" />
+    <Content Include="CookieGet.aspx" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

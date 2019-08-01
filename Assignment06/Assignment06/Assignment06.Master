@@ -29,7 +29,7 @@
                     <asp:HyperLink runat="server" NavigateUrl="HiddenInput.aspx" CssClass="nav-link">Hidden Inputs</asp:HyperLink>
                 </li>
                 <li class="nav-item btn-dark">
-                    <asp:HyperLink runat="server" NavigateUrl="Cookie.aspx" CssClass="nav-link">Cookies</asp:HyperLink>
+                    <asp:HyperLink runat="server" NavigateUrl="CookieSet.aspx" CssClass="nav-link">Cookies</asp:HyperLink>
                 </li>
                 <li class="nav-item btn-dark">
                     <asp:HyperLink runat="server" NavigateUrl="SessionSet.aspx" CssClass="nav-link">Session</asp:HyperLink>
