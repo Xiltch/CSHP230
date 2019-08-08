@@ -1,94 +1,102 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Assignment07.Master" AutoEventWireup="true" %>
 
+<%@ Import Namespace="System.Data.SqlClient" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="System.Data.OleDb" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolderHead" runat="server">
-     <script runat="server">
+    <script runat="server">
 
-         protected void uxRequestLogin_Click(object sender, EventArgs e)
-         {
+        protected void uxRequestLogin_Click(object sender, EventArgs e)
+        {
 
-         }
+        }
 
-         protected void uxLogin_Click(object sender, EventArgs e)
-         {
-             string login = uxLogin.Text;
-             string password = uxPassword.Text;
+        protected void uxLogin_Click(object sender, EventArgs e)
+        {
+            string login = uxLogin.Text;
+            string password = uxPassword.Text;
 
-             switch (serverLogin(login, password))
-             {
-                 case 0:
-                     showFeedback("There was problem completing the request, please check your details and try again");
-                     break;
+            switch (serverLogin(login, password))
+            {
+                case 0:
+                    showFeedback("There was problem completing the request, please check your details and try again");
+                    break;
 
-                 case 1:
-                     // Success
-                     resetForm();
-                     break;
+                case 1:
+                    // Success
+                    Response.Redirect("Home.aspx");
+                    break;
 
-                 case -1:
-                     // something went wrong
-                     break;
+                case -1:
+                    // something went wrong
+                    break;
 
-             }
-         }
+            }
+        }
 
-         private int serverLogin(string login, string password)
-         {
-             return -1;
+        private int serverLogin(string login, string password)
+        {
 
-             System.Data.OleDb.OleDbConnection sqlConnection = new System.Data.OleDb.OleDbConnection();
-             System.Data.OleDb.OleDbCommand sqlCommand = null;
-             try
-             {   //1. Make a Connection
-                 string connectionString = @"Provider=SQLOLEDB;
-                                    Data Source=.\SQLExpress;
-                                    Integrated Security=SSPI;
-                                    Initial Catalog=Master";
+            System.Data.OleDb.OleDbConnection sqlConnection = new System.Data.OleDb.OleDbConnection();
+            System.Data.OleDb.OleDbCommand sqlCommand = null;
+            try
+            {   //1. Make a Connection
 
-                 connectionString = @"Provider=SQLOLEDB;
-                                    Data Source=twinkies\SQLExpress;
-                                    Persist Security Info=True;
-                                    User ID=cshp230;
-                                    Password=1303393";
+                sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["ischool"].ConnectionString;
 
-                 sqlConnection.ConnectionString = connectionString;
-                 sqlConnection.Open();
+                sqlConnection.Open();
 
-                 //2. Issue a Command
-                 sqlCommand = new System.Data.OleDb.OleDbCommand("dbo.pInsLogins", sqlConnection);
+                //2. Issue a Command
+                sqlCommand = new System.Data.OleDb.OleDbCommand("pSelLoginIdByLoginAndPassword", sqlConnection);
 
-                 sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-                 sqlCommand.Parameters.AddWithValue("@login", login);
-                 sqlCommand.Parameters.AddWithValue("@passwrod", password);
+                OleDbParameter RetVal = sqlCommand.Parameters.Add("RetVal", OleDbType.Integer);
+                RetVal.Direction = ParameterDirection.ReturnValue;
 
-                 var result = sqlCommand.ExecuteNonQuery();
+                sqlCommand.Parameters.AddWithValue("@StudentLogin", login);
+                sqlCommand.Parameters.AddWithValue("@StudentPassword", password);
 
-                 return result;
+                sqlCommand.Parameters.Add("@StudentId", System.Data.OleDb.OleDbType.Integer);
+                sqlCommand.Parameters["@StudentId"].Direction = ParameterDirection.Output;
 
-             }
-             catch (Exception ex)
-             {
-                 showFeedback(ex.Message);
-                 return -1;
-             }
-             finally { sqlConnection.Close(); } //4. Run clean up code
+                sqlCommand.ExecuteNonQuery();
 
-         }
+                var result = (int)RetVal.Value;
 
-         private void resetForm()
-         {
-             uxLogin.Text = "";
-             uxPassword.Text = "";
-         }
+                if ((int)result == 100)
+                {
+                    Session["StudentID"] = (int)sqlCommand.Parameters["@StudentId"].Value;
+                    return 1;
+                }
 
-         private void showFeedback(string message)
-         {
-             uxFormFeedback.Text = message;
-             uxFormFeedback.Visible = true;
-         }
+                return 0;
+
+            }
+            catch (Exception ex)
+            {
+                showFeedback(ex.Message);
+                return -1;
+            }
+            finally { sqlConnection.Close(); } //4. Run clean up code
+
+        }
+
+        private void resetForm()
+        {
+            uxLogin.Text = "";
+            uxPassword.Text = "";
+        }
+
+        private void showFeedback(string message)
+        {
+            uxFormFeedback.Text = message;
+            uxFormFeedback.Visible = true;
+        }
 
     </script>
-       <script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function () {
 
             var hasLogin = false;

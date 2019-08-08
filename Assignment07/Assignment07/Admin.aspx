@@ -8,6 +8,18 @@
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["StudentID"] == null) //if no session variable...
+            {
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                var StudentId = (int)Session["StudentID"];
+
+                if (StudentId != 0) // Working on the assumption that Student ID "0" is the admin, would rather use a call to confirm admin rights by the server
+                    Response.Redirect("AccessDenied.aspx");
+            }
+
             var context = new SchoolRepository();
 
             // TODO check if admin logged in, if not access denied
@@ -107,7 +119,7 @@
             }
         }
 
-        
+
         private void renderLoginRequestsTable(IEnumerable<Request> requests)
         {
             var headerRow = new TableRow();

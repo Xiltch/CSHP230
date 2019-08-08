@@ -64,7 +64,7 @@ namespace Assignment07
             try
             {   //1. Make a Connection
 
-                sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["ischool"].ConnectionString; ;
+                sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["ischool"].ConnectionString;
                 sqlConnection.Open();
 
                 string query = "SELECT [StudentId], [StudentName], [StudentEmail], [StudentLogin], [StudentPassword] FROM [WebDevAssignment07].[dbo].[vStudents];";
@@ -112,7 +112,7 @@ namespace Assignment07
             try
             {   //1. Make a Connection
 
-                sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["ischool"].ConnectionString; ;
+                sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["ischool"].ConnectionString;
                 sqlConnection.Open();
 
                 string query = "SELECT [LoginId], [Name], [EmailAddress], [LoginName], [NewOrReactivate], [ReasonForAccess], [DateRequiredBy] FROM [WebDevAssignment07].[dbo].[vLoginRequests];";
@@ -161,7 +161,7 @@ namespace Assignment07
             try
             {   //1. Make a Connection
 
-                sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["ischool"].ConnectionString; ;
+                sqlConnection.ConnectionString = ConfigurationManager.ConnectionStrings["ischool"].ConnectionString;
                 sqlConnection.Open();
 
                 string query = "SELECT [ClassId], [StudentId] FROM [WebDevAssignment07].[dbo].[vClassStudents];";

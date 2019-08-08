@@ -35,7 +35,7 @@
                     <asp:HyperLink runat="server" NavigateUrl="ComingSoon.aspx" CssClass="nav-link">My Classes</asp:HyperLink>
                 </li>
                 <li class="nav-item btn-dark">
-                    <asp:HyperLink runat="server" NavigateUrl="ComingSoon.aspx" CssClass="nav-link">(Login)</asp:HyperLink>
+                    <asp:HyperLink runat="server" NavigateUrl="Login.aspx" CssClass="nav-link">(Login)</asp:HyperLink>
                 </li>
                 <li class="nav-item btn-dark">
                     <asp:HyperLink runat="server" NavigateUrl="Admin.aspx" CssClass="nav-link">Admin. Page</asp:HyperLink>
