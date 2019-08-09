@@ -1,0 +1,27 @@
+﻿@{Layout = null;}
+@{ var Sum = 0f; var N1 = 0F; var N2 = 0f;
+    if (IsPost)
+    {
+        // Collect the data from the Input textboxes on the page
+        N1 = Request["text1"].AsFloat();
+        N2 = Request["text2"].AsFloat();
+        Sum = N1 + N2;
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Lab04</title>
+</head>
+<body>
+    <p>Enter two numbers and then click the <strong>'Add Values'</strong> button.</p>
+    <form action="" method="post">
+        @*Use *@
+        <p>@Html.Label("text1", "First Number: ")@Html.TextBox("text1")</p>
+        <p>@Html.Label("text1", "Second Number: ")@Html.TextBox("text2")</p>
+        <p><input type="submit" value="Add Values" /></p>
+    </form>
+    <p>The Sum of @N1 and @N2 is @Sum</p>
+</body>
+</html>
