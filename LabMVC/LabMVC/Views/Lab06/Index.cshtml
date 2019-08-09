@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        @using (@Html.BeginForm("CalculateValues", "Lab06", FormMethod.Post))
+        { //start the form
+            <p><span>Enter the First Value: </span> @Html.TextBox("Value1", 0) </p>
+            <p><span>Enter the Second Value: </span> @Html.TextBox("Value2", 0)</p>
+            <p><input type="submit" id="ProcessValues" value="Process Values" /></p>
+        } @*End the form*@
+    </div>
+</body>
+</html>
