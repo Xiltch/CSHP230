@@ -94,7 +94,9 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\Lab03Controller.cs" />
     <Compile Include="Controllers\Lab04Controller.cs" />
+    <Compile Include="Controllers\Lab05Controller.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -105,6 +107,9 @@
     <None Include="packages.config" />
     <Content Include="Views\Default\Index.cshtml" />
     <Content Include="Views\Lab04\Index.cshtml" />
+    <Content Include="Views\Lab03\Index.cshtml" />
+    <Content Include="Views\Lab05\Index.cshtml" />
+    <Content Include="Views\Lab05\CalculateSum.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
