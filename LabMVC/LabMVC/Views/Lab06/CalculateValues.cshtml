@@ -1,0 +1,32 @@
+﻿@model LabMVC.Models.MathData
+@{
+    var v1 = Model.Value1;
+    var v2 = Model.Value2;
+    var s = Model.Sum;
+    var d = Model.Differnce;
+    var p = Model.Product;
+    var q = Model.Quotient;
+}
+
+@{ Layout = null;}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CalculateValues</title>
+</head>
+<body>
+    <h2>Calculate Values</h2>
+    <div>
+        @*You can get data using a Razor variable or an HTML helper*@
+        Given the values of @v1 and @Html.DisplayFor(model => model.Value2)
+        <p>You get the following results:</p>
+        <ul>
+            <li>Sum: @s</li>
+            <li>Difference: @d</li>
+            <li>Product: @p</li>
+            <li>Quotient: @q</li>
+        </ul>
+    </div>
+</body>
+</html>

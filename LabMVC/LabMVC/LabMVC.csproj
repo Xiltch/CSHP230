@@ -97,9 +97,11 @@
     <Compile Include="Controllers\Lab03Controller.cs" />
     <Compile Include="Controllers\Lab04Controller.cs" />
     <Compile Include="Controllers\Lab05Controller.cs" />
+    <Compile Include="Controllers\Lab06Controller.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\MathData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +112,8 @@
     <Content Include="Views\Lab03\Index.cshtml" />
     <Content Include="Views\Lab05\Index.cshtml" />
     <Content Include="Views\Lab05\CalculateSum.cshtml" />
+    <Content Include="Views\Lab06\Index.cshtml" />
+    <Content Include="Views\Lab06\CalculateValues.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -119,7 +123,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
