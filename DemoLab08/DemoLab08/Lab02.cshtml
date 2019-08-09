@@ -1,0 +1,38 @@
+﻿@{
+    Decimal first, second;
+
+    string outputMessage = "";
+
+    if (IsPost)
+    {
+        // Collect the data from the Input textboxes on the page
+        first = Convert.ToDecimal(Request["txtFirstNumber"]);
+        second = Convert.ToDecimal(Request["txtSecondNumber"]);
+
+        decimal result = first + second;
+
+        outputMessage = $"The Sum of {first} and {second} is {result}";
+
+    }
+
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+    <form action="" method="post">
+        <p>Enter two numbers and then click the 'Add Values' button.</p>
+        <p><label for="txtFirstNumber">First Number:</label> <input type="text" name="txtFirstNumber" /> </p>
+        <p><label for="txtSecondNumber">Second Number:</label> <input type="text" name="txtSecondNumber" /> </p>
+        <p><input type="submit" value="Add Values" /></p>
+    </form>
+
+    @outputMessage
+
+</body>
+</html>
