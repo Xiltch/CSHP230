@@ -6,22 +6,25 @@ using System.Web.Mvc;
 
 namespace Assignment08.Controllers
 {
-    public class HomeController : Controller
+    public class LoginController : Controller
     {
-        // GET: Home
+        
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Error()
+        [HttpPost]
+        public ActionResult Index(string login, string password)
         {
             return View();
         }
 
-        public ActionResult AccessDenied()
+        [ActionName("Request")]
+        public ActionResult RequestLogin()
         {
-            return View();
+            return View("RequestLogin");
         }
     }
 }

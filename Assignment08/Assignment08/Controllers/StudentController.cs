@@ -6,20 +6,10 @@ using System.Web.Mvc;
 
 namespace Assignment08.Controllers
 {
-    public class HomeController : Controller
+    public class StudentController : Controller
     {
-        // GET: Home
+        // GET: Student
         public ActionResult Index()
-        {
-            return View();
-        }
-
-        public ActionResult Error()
-        {
-            return View();
-        }
-
-        public ActionResult AccessDenied()
         {
             return View();
         }
