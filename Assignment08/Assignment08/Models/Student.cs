@@ -5,12 +5,12 @@ using System.Web;
 
 namespace Assignment08.Models
 {
-    public class Class
+    public class Student
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public DateTime Date { get; set; }
-        public string Description { get; set; }
-
+        public string Email { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
     }
 }

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Assignment08.Models;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 
@@ -7,6 +9,12 @@ namespace Assignment08.DAL
 {
     public class ProjectRepository : IDisposable
     {
+        private readonly string ConnectionString;
+
+        public ProjectRepository()
+        {
+
+        }
 
         #region IDisposable Support
         private bool disposedValue = false; // To detect redundant calls
