@@ -14,14 +14,5 @@ namespace Assignment08.Controllers
             return View();
         }
 
-        public ActionResult Error()
-        {
-            return View();
-        }
-
-        public ActionResult AccessDenied()
-        {
-            return View();
-        }
     }
 }

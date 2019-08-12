@@ -11,9 +11,9 @@ namespace Assignment08.DAL
     {
         private readonly string ConnectionString;
 
-        public ProjectRepository()
+        public ProjectRepository(ConfigOption options)
         {
-
+            this.ConnectionString = options.ConnectionStringProjectContext;
         }
 
         #region IDisposable Support
@@ -33,6 +33,11 @@ namespace Assignment08.DAL
 
                 disposedValue = true;
             }
+        }
+
+        internal int Authenticate(string login, string password)
+        {
+            throw new AuthenticationException($"Login Failed for {login}");
         }
 
         // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
