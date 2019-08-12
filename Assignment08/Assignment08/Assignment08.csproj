@@ -205,6 +205,12 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Blueprints\Blueprints.csproj">
+      <Project>{c761694e-26cc-450b-a1b1-315f500b0c72}</Project>
+      <Name>Blueprints</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
