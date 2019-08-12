@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -37,6 +39,38 @@ namespace Assignment08.DAL
 
         internal int Authenticate(string login, string password)
         {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (SqlCommand command = new SqlCommand("pSelLoginIdByLoginAndPassword", connection))
+            {
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                var RetVal = command.Parameters.Add("RetVal", SqlDbType.Int);
+                RetVal.Direction = ParameterDirection.ReturnValue;
+
+                command.Parameters.AddWithValue("@StudentLogin", login);
+                command.Parameters.AddWithValue("@StudentPassword", password);
+
+                command.Parameters.Add("@StudentId",SqlDbType.Int);
+
+                command.Parameters["@StudentId"].Direction = ParameterDirection.Output;
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                } catch (SqlException e)
+                {
+                    throw new AuthenticationException($"Login Failed for {login} - {e.Message}");
+                }
+
+                var result = (int)RetVal.Value;
+
+                if ((int)result == 100)
+                {
+                    return (int)command.Parameters["@StudentId"].Value;
+                }
+            }
+
             throw new AuthenticationException($"Login Failed for {login}");
         }
 
