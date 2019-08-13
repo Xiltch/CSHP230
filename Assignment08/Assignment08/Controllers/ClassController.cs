@@ -1,4 +1,5 @@
 ﻿using Assignment08.Domain.Interfaces;
+using Assignment08.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,13 @@ namespace Assignment08.Controllers
 
         public ActionResult Mine()
         {
-            return View();
+            if (this.Session["currentUser"] is User user)
+            {
+                var classes = context.GetClasses(user.Id);
+                return View(classes);
+            }
+
+            return RedirectToAction("Index", "Login");
         }
     }
 }

@@ -1,0 +1,10 @@
+﻿@model Assignment08.Models.User
+
+@{
+    ViewBag.Title = "LoggedIn";
+}
+
+<h2>You are already logged in - @Model.Login</h2>
+
+@Html.ActionLink("Logout", "Logout", "Login", null, new { @class = "btn btn-primary" })
+
