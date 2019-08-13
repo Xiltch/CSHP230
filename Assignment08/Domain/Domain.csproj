@@ -41,16 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Class.cs" />
+    <Compile Include="Entities\ConfigOption.cs" />
+    <Compile Include="Exceptions\RepositoryExceptions.cs" />
+    <Compile Include="Entities\Student.cs" />
     <Compile Include="Interfaces\IClass.cs" />
     <Compile Include="Interfaces\IClassRepository.cs" />
     <Compile Include="Interfaces\IConfigOption.cs" />
     <Compile Include="Interfaces\IStudent.cs" />
     <Compile Include="Interfaces\IStudentRepository.cs" />
+    <Compile Include="Processors\ClassRepository.cs" />
+    <Compile Include="Processors\StudentRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="Processors\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

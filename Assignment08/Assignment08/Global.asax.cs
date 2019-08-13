@@ -6,11 +6,11 @@ using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Assignment08.DAL;
-using Assignment08.Models;
+using Assignment08.Domain.Entities;
+using Assignment08.Domain.Interfaces;
+using Assignment08.Domain.Processors;
 using Autofac;
 using Autofac.Integration.Mvc;
-using Blueprints;
 
 namespace Assignment08
 {
@@ -43,7 +43,8 @@ namespace Assignment08
 
             builder.RegisterInstance<IConfigOption>(config);
 
-            builder.RegisterType<IUnitOfWork>().As<ProjectRepository>();
+            builder.RegisterType<StudentRepository>().As<IStudentRepository>();
+            builder.RegisterType<ClassRepository>().As<IClassRepository>();
 
             var container = builder.Build();
 

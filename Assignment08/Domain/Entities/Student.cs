@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Assignment08.Domain.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Assignment08.Models
+namespace Assignment08.Domain.Entities
 {
-    public class Student
+    public class Student : IStudent
     {
         public int Id { get; set; }
         public string Name { get; set; }

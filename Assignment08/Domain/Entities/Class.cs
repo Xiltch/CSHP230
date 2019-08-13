@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Assignment08.Models
+namespace Assignment08.Domain.Entities
 {
     public class Class
     {

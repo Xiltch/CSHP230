@@ -1,4 +1,6 @@
-﻿using Assignment08.DAL;
+﻿using Assignment08.Domain.Entities;
+using Assignment08.Domain.Exceptions;
+using Assignment08.Domain.Interfaces;
 using Assignment08.Models;
 using System;
 using System.Collections.Generic;
@@ -11,9 +13,9 @@ namespace Assignment08.Controllers
     public class LoginController : Controller
     {
 
-        private readonly ProjectRepository context;
+        private readonly IStudentRepository context;
 
-        public LoginController(ProjectRepository context)
+        public LoginController(IStudentRepository context)
         {
             this.context = context;
         }
@@ -31,24 +33,29 @@ namespace Assignment08.Controllers
             if (!ModelState.IsValid)
                 return View();
 
+
             try
             {
-                user.Id = context.Authenticate(user.Login, user.Password);
-                user.Authenticated = true;
+                var student = context.Authenticate(user.Login, user.Password);
 
-                // need to store the user in a session
-                this.Session["currentUser"] = user;
+                if (student != null)
+                {
+                    // need to store the user in a session
+                    this.Session["currentUser"] = student;
+                    return RedirectToAction("Mine", "Class");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Failed to login");
+                    return View();
+                }
 
-            }
-            catch (AuthenticationException e)
+            } catch (AuthenticationException e)
             {
                 ModelState.AddModelError("", e.Message);
                 return View();
             }
 
-
-
-            return RedirectToAction("Mine", "Class");
         }
 
         [ActionName("Request")]

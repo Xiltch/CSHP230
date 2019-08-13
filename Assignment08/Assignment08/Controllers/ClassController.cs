@@ -1,4 +1,4 @@
-﻿using Assignment08.DAL;
+﻿using Assignment08.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +9,11 @@ namespace Assignment08.Controllers
 {
     public class ClassController : Controller
     {
-        private ProjectRepository repository;
+        private IClassRepository context;
 
-        public ClassController(ProjectRepository projectRepository)
+        public ClassController(IClassRepository context)
         {
-            this.repository = projectRepository;
+            this.context = context;
         }
 
         // GET: Class

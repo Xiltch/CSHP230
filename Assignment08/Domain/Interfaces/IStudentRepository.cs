@@ -9,6 +9,6 @@ namespace Assignment08.Domain.Interfaces
     public interface IStudentRepository
     {
         IEnumerable<IStudent> AllStudents();
-        bool Validate(IStudent student);
+        IStudent Authenticate(string login, string password);
     }
 }
