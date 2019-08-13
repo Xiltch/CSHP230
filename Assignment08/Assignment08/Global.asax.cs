@@ -10,6 +10,7 @@ using Assignment08.DAL;
 using Assignment08.Models;
 using Autofac;
 using Autofac.Integration.Mvc;
+using Blueprints;
 
 namespace Assignment08
 {
@@ -40,9 +41,9 @@ namespace Assignment08
                 .ConnectionStrings[connectionStringKey].ToString()
             };
 
-            builder.RegisterInstance<ConfigOption>(config);
+            builder.RegisterInstance<IConfigOption>(config);
 
-            builder.RegisterType<ProjectRepository>().As<ProjectRepository>();
+            builder.RegisterType<IUnitOfWork>().As<ProjectRepository>();
 
             var container = builder.Build();
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blueprints
+namespace Assignment08.Domain.Interfaces
 {
     public interface IStudent
     {

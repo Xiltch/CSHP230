@@ -6,10 +6,11 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using Blueprints;
 
 namespace Assignment08.DAL
 {
-    public class ProjectRepository : IDisposable
+    public class ProjectRepository : IUnitOfWork, IDisposable
     {
         private readonly string ConnectionString;
 
