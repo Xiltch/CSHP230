@@ -12,6 +12,6 @@ namespace Assignment08.Domain.Entities
         public string Name { get; set; }
         public DateTime Date { get; set; }
         public string Description { get; set; }
-
+        public IEnumerable<IStudent> Students { get; set; }
     }
 }

@@ -13,5 +13,6 @@ namespace Assignment08.Domain.Entities
         public string Email { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
+        public IEnumerable<IClass> Classes { get; set; }
     }
 }

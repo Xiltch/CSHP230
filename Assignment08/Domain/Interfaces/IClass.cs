@@ -12,5 +12,6 @@ namespace Assignment08.Domain.Interfaces
         string Name { get; set; }
         DateTime Date { get; set; }
         string Description { get; set; }
+        IEnumerable<IStudent> Students { get; set; }
     }
 }

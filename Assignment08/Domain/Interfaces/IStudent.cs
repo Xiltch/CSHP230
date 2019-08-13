@@ -13,5 +13,6 @@ namespace Assignment08.Domain.Interfaces
         string Email { get; set; }
         string Login { get; set; }
         string Password { get; set; }
+        IEnumerable<IClass> Classes { get; set; }
     }
 }
