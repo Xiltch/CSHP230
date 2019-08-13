@@ -7,7 +7,7 @@
     <ProjectGuid>{E3EE280E-0C7F-47C9-AD2A-36FC582F8AED}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Domain</RootNamespace>
+    <RootNamespace>Assignment08.Domain</RootNamespace>
     <AssemblyName>Domain</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -43,8 +43,11 @@
   <ItemGroup>
     <Compile Include="Entities\Class.cs" />
     <Compile Include="Entities\ConfigOption.cs" />
-    <Compile Include="Exceptions\RepositoryExceptions.cs" />
+    <Compile Include="Exceptions\AuthenticationException.cs" />
     <Compile Include="Entities\Student.cs" />
+    <Compile Include="Exceptions\DataReadException.cs" />
+    <Compile Include="Exceptions\GeneralException.cs" />
+    <Compile Include="Exceptions\StudentNotFoundException.cs" />
     <Compile Include="Interfaces\IClass.cs" />
     <Compile Include="Interfaces\IClassRepository.cs" />
     <Compile Include="Interfaces\IConfigOption.cs" />

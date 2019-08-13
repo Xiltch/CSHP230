@@ -32,7 +32,8 @@ namespace Assignment08.Controllers
         {
             if (this.Session["currentUser"] is User user)
             {
-                var classes = context.GetClasses(user.Id);
+                var classes = context.GetClasses(user.Id)
+                    .Select(x => new Class(x));
                 return View(classes);
             }
 
