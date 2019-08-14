@@ -23,7 +23,7 @@ namespace Assignment08.Domain.Processors
         public IEnumerable<IClass> GetClasses()
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
-            using (SqlCommand command = new SqlCommand("pSelClassesByStudentId", connection))
+            using (SqlCommand command = new SqlCommand("pSelClassesByStudents", connection))
             {
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -37,17 +37,11 @@ namespace Assignment08.Domain.Processors
                     while (reader.Read())
                     {
                         var classId = int.Parse(reader["ClassId"].ToString());
-
+                        var studentId = reader["StudentId"];
+                            
                         IClass item;
 
-                        var student = new Student()
-                        {
-                            Id = int.Parse(reader["StudentId"].ToString()),
-                            Name = reader["StudentName"].ToString(),
-                            Email = reader["StudentEmail"].ToString()
-                        };
-
-                        if (items.ContainsKey(classId))
+                        if (!items.ContainsKey(classId))
                         {
                              item = new Class()
                              {
@@ -66,7 +60,16 @@ namespace Assignment08.Domain.Processors
                             item = items[classId];
                         }
 
-                        ((List<IStudent>)item.Students).Add(student);
+                        if (studentId != null)
+                        {
+                            var student = new Student()
+                            {
+                                Id = int.Parse(studentId.ToString()),
+                                Name = reader["StudentName"].ToString(),
+                                Email = reader["StudentEmail"].ToString()
+                            };
+                            ((List<IStudent>)item.Students).Add(student);
+                        }
                     }
 
                     return items.Select(x => x.Value);

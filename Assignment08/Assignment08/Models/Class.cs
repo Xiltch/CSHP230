@@ -13,6 +13,8 @@ namespace Assignment08.Models
         public DateTime Date { get; set; }
         public string Description { get; set; }
 
+        public IEnumerable<Student> Students { get; set; }
+
         public Class()
         {
         }

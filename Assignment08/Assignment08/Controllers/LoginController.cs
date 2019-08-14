@@ -23,7 +23,7 @@ namespace Assignment08.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            if (this.Session["currentUser"] is User user)
+            if (this.Session["currentUser"] is Models.Student user)
             {
                 return RedirectToAction("LoggedIn");
             }
@@ -32,7 +32,7 @@ namespace Assignment08.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(User user)
+        public ActionResult Index(Models.Student user)
         {
 
             if (!ModelState.IsValid)
@@ -46,7 +46,7 @@ namespace Assignment08.Controllers
                 if (student != null)
                 {
                     // need to store the user in a session
-                    this.Session["currentUser"] = new User(student);
+                    this.Session["currentUser"] = new Models.Student(student);
                     return RedirectToAction("Mine", "Class");
                 }
                 else
@@ -65,7 +65,7 @@ namespace Assignment08.Controllers
 
         public ActionResult LoggedIn()
         {
-            if (this.Session["currentUser"] is User user)
+            if (this.Session["currentUser"] is Models.Student user)
             {
                 return View(user);
             }

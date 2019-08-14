@@ -20,7 +20,9 @@ namespace Assignment08.Controllers
         // GET: Class
         public ActionResult List()
         {
-            return View();
+            var classes = context.GetClasses()
+                     .Select(x => new Class(x));
+            return View(classes);
         }
 
         public ActionResult Register()
@@ -30,7 +32,7 @@ namespace Assignment08.Controllers
 
         public ActionResult Mine()
         {
-            if (this.Session["currentUser"] is User user)
+            if (this.Session["currentUser"] is Student user)
             {
                 var classes = context.GetClasses(user.Id)
                     .Select(x => new Class(x));
