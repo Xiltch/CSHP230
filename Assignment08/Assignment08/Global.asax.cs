@@ -22,10 +22,10 @@ namespace Assignment08
         private const string connectionStringKey = "UWServer";
 #endif
 #if DEBUG_LAPTOP
-        private const string connectionStringKey = "UWServer";
+        private const string connectionStringKey = "LocalDB";
 #endif
 #if DEBUG_HOME
-        private const string connectionStringKey = "UWServer";
+        private const string connectionStringKey = "HomeServer";
 #endif
         #endregion
 
