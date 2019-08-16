@@ -16,7 +16,7 @@ namespace Assignment08
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        private const string connectionStringKey = "LocalDB";
+        private const string connectionStringKey = "HomeServer";
 
         protected void Application_Start()
         {

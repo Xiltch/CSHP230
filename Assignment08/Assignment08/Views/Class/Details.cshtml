@@ -1,4 +1,6 @@
 ﻿@model  Assignment08.Models.Class
+@using Assignment08.Helpers
+@using Assignment08.Models
 
 @{
     ViewBag.Title = "Details";
@@ -23,7 +25,7 @@
 
 <h3>Registered Students</h3>
 
-@if (Model.Students.Contains(Session["currentUser"]))
+@if (Session["currentUser"] is Student currentUser && Model.Students.Contains(currentUser, new StudentComparer()))
 {
     @Html.ActionLink("Unregister", "Unregister")
 }
