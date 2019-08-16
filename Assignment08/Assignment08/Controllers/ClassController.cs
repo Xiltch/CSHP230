@@ -25,9 +25,17 @@ namespace Assignment08.Controllers
             return View(classes);
         }
 
-        public ActionResult Register()
+        public ActionResult Details(int classId)
         {
-            return View();
+            var classInfo = context.GetClasses()
+                .FirstOrDefault(x => x.Id == classId);
+
+            return View(new Class(classInfo));
+        }
+
+        public ActionResult Register(Class subject)
+        {
+            return View(subject);
         }
 
         public ActionResult Mine()

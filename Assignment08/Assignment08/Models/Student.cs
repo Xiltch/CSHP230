@@ -1,12 +1,13 @@
 ﻿using Assignment08.Domain.Interfaces;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
 namespace Assignment08.Models
 {
-    public class Student
+    public class Student : IComparable, IEqualityComparer
     {
         public int Id { get; set; }
         public string Login { get; set; }
@@ -34,5 +35,29 @@ namespace Assignment08.Models
             this.isAdmin = admin;
         }
 
+        public int CompareTo(object obj)
+        {
+            return Id.CompareTo(obj);
+        }
+
+        public new bool Equals(object x, object y)
+        {
+            if (x is null && y is null)
+                return true;
+
+            if (x is null)
+                return false;
+
+            if (!(x is Student) || !(y is Student))
+                return false;
+
+            return ((Student)x).CompareTo(y) == 0;
+
+        }
+
+        public int GetHashCode(object obj)
+        {
+            return Id.GetHashCode();
+        }
     }
 }

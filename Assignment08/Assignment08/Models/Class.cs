@@ -25,6 +25,25 @@ namespace Assignment08.Models
             this.Name = obj.Name;
             this.Date = obj.Date;
             this.Description = obj.Description;
+
+            if (obj.Students != null)
+            {
+                var students = new List<Student>();
+
+                obj.Students.ToList().ForEach(x =>
+                {
+                    students.Add(new Student()
+                    {
+                        Id = x.Id,
+                        Login = x.Login,
+                        Name = x.Name
+                    });
+                });
+
+                Students = students;
+
+            }
+
         }
     }
 }

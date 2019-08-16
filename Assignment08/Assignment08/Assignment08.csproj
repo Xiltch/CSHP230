@@ -185,6 +185,7 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\Code.cshtml" />
     <Content Include="Views\Login\LoggedIn.cshtml" />
+    <Content Include="Views\Class\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
