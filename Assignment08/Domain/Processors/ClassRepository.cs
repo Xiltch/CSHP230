@@ -22,6 +22,8 @@ namespace Assignment08.Domain.Processors
 
         public IEnumerable<IClass> GetClasses()
         {
+            // TODO need to fix issue in stored procedure only returning classes that have at least one student registered
+
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             using (SqlCommand command = new SqlCommand("pSelClassesByStudents", connection))
             {
