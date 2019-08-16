@@ -10,15 +10,25 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Dev Home|Any CPU = Dev Home|Any CPU
+		Dev Laptop|Any CPU = Dev Laptop|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4428F477-FAE9-4523-A48C-8D78049B8875}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4428F477-FAE9-4523-A48C-8D78049B8875}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4428F477-FAE9-4523-A48C-8D78049B8875}.Dev Home|Any CPU.ActiveCfg = Dev Home|Any CPU
+		{4428F477-FAE9-4523-A48C-8D78049B8875}.Dev Home|Any CPU.Build.0 = Dev Home|Any CPU
+		{4428F477-FAE9-4523-A48C-8D78049B8875}.Dev Laptop|Any CPU.ActiveCfg = Dev Laptop|Any CPU
+		{4428F477-FAE9-4523-A48C-8D78049B8875}.Dev Laptop|Any CPU.Build.0 = Dev Laptop|Any CPU
 		{4428F477-FAE9-4523-A48C-8D78049B8875}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4428F477-FAE9-4523-A48C-8D78049B8875}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E3EE280E-0C7F-47C9-AD2A-36FC582F8AED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E3EE280E-0C7F-47C9-AD2A-36FC582F8AED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3EE280E-0C7F-47C9-AD2A-36FC582F8AED}.Dev Home|Any CPU.ActiveCfg = Dev Home|Any CPU
+		{E3EE280E-0C7F-47C9-AD2A-36FC582F8AED}.Dev Home|Any CPU.Build.0 = Dev Home|Any CPU
+		{E3EE280E-0C7F-47C9-AD2A-36FC582F8AED}.Dev Laptop|Any CPU.ActiveCfg = Dev Laptop|Any CPU
+		{E3EE280E-0C7F-47C9-AD2A-36FC582F8AED}.Dev Laptop|Any CPU.Build.0 = Dev Laptop|Any CPU
 		{E3EE280E-0C7F-47C9-AD2A-36FC582F8AED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3EE280E-0C7F-47C9-AD2A-36FC582F8AED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

@@ -16,7 +16,18 @@ namespace Assignment08
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+
+        #region Connection String
+#if DEBUG_UW
         private const string connectionStringKey = "UWServer";
+#endif
+#if DEBUG_LAPTOP
+        private const string connectionStringKey = "UWServer";
+#endif
+#if DEBUG_HOME
+        private const string connectionStringKey = "UWServer";
+#endif
+        #endregion
 
         protected void Application_Start()
         {
