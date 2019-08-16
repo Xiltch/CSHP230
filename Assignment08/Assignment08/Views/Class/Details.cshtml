@@ -23,14 +23,12 @@
 
 <hr />
 
-<h3>Registered Students</h3>
-
 @if (Session["currentUser"] != null)
 {
     <div style="margin: 10px">
         @if (Session["currentUser"] is Student currentUser && Model.Students.Contains(currentUser, new StudentComparer()))
         {
-            @Html.ActionLink("Unregister", "Unregister", "Class",  new { classId = Model.Id }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Unregister", "Unregister", "Class", new { classId = Model.Id }, new { @class = "btn btn-primary" })
         }
         else
         {
@@ -38,6 +36,8 @@
         }
     </div>
 }
+
+<h2>Registered Students</h2>
 
 <table class="table">
 

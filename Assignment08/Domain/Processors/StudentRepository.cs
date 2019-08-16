@@ -1,6 +1,7 @@
 ﻿using Assignment08.Domain.Entities;
 using Assignment08.Domain.Exceptions;
 using Assignment08.Domain.Interfaces;
+using Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,7 +26,7 @@ namespace Assignment08.Domain.Processors
             throw new NotImplementedException();
         }
 
-        public IStudent Authenticate(string login, string password) 
+        public IStudent Authenticate(string login, string password)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             using (SqlCommand command = new SqlCommand("pSelLoginIdByLoginAndPassword", connection))
@@ -56,16 +57,48 @@ namespace Assignment08.Domain.Processors
 
                 if ((int)result == 100)
                 {
-                    var student = new Student()
-                    {
-                        Id = (int)command.Parameters["@StudentId"].Value,
-                        Login = login
-                    };
-                    return student;
+                    return GetStudent((int)command.Parameters["@StudentId"].Value);
                 }
             }
 
             throw new AuthenticationException($"Login Failed for {login}");
+        }
+
+        public IStudent GetStudent(int StudentId)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (SqlCommand command = new SqlCommand("SELECT [StudentId], [StudentName], [StudentEmail], [StudentLogin] FROM vStudents WHERE [StudentId] = @StudentId", connection))
+            {
+                command.CommandType = System.Data.CommandType.Text;
+
+                command.Parameters.AddWithValue("@StudentId", StudentId);
+
+                try
+                {
+                    connection.Open();
+                    var reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Student student = new Student()
+                        {
+                            Id = int.Parse(reader["StudentId"].ToString()),
+                            Login = reader["StudentLogin"].ToString(),
+                            Name = reader["StudentName"].ToString(),
+                            Email = reader["StudentEmail"].ToString()
+                        };
+
+                        return student;
+                    }
+
+                }
+                catch (SqlException e)
+                {
+                    throw new DataReadException($"Failed to read data from the server - {e.Message}");
+                }
+
+            }
+
+            throw new StudentNotFoundException($"Did not find a record for the student id {StudentId}");
         }
     }
 }

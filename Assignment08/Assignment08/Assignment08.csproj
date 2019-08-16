@@ -189,6 +189,7 @@
     <Content Include="Views\Login\LoggedIn.cshtml" />
     <Content Include="Views\Class\Details.cshtml" />
     <Content Include="Views\Login\Logout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -197,7 +198,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Home\" />
     <Folder Include="Views\Student\" />
   </ItemGroup>
   <ItemGroup>

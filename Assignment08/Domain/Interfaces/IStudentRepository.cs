@@ -10,5 +10,7 @@ namespace Assignment08.Domain.Interfaces
     {
         IEnumerable<IStudent> AllStudents();
         IStudent Authenticate(string login, string password);
+        IStudent GetStudent(int StudentId);
+
     }
 }
