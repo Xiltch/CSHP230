@@ -1,0 +1,47 @@
+﻿@model  Assignment08.Models.Class
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Class Details</h2>
+
+<div>
+    <b>Class Name: </b>
+    @Html.DisplayFor(model => model.Name)
+</div>
+<div>
+    <b>Date: </b>
+    @Html.DisplayFor(model => model.Date)
+</div>
+<div>
+    <b>Description: </b>
+    @Html.DisplayFor(model => model.Description)
+</div>
+
+<hr />
+
+<h3>Registered Students</h3>
+
+@if (Model.Students.Contains(Session["currentUser"]))
+{
+    @Html.ActionLink("Unregister", "Unregister")
+}
+else
+{
+    @Html.ActionLink("Register", "Register")
+}
+
+<table class="table">
+
+    @foreach (var item in Model.Students)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+        </tr>
+    }
+
+</table>
