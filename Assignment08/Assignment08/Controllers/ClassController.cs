@@ -33,9 +33,26 @@ namespace Assignment08.Controllers
             return View(new Class(classInfo));
         }
 
-        public ActionResult Register(Class subject)
+        public ActionResult Register(int classId)
         {
-            return View(subject);
+            if (this.Session["currentUser"] is Models.Student user)
+            {
+                context.RegisterForClass(classId, user.Id);
+                return RedirectToAction("Details", "Class", new { classId = classId });
+            }
+            
+            return RedirectToAction("Index", "Login");
+        }
+
+        public ActionResult UnRegister(int classId)
+        {
+            if (this.Session["currentUser"] is Models.Student user)
+            {
+                context.DeRegisterFromClass(classId, user.Id);
+                return RedirectToAction("Details", "Class", new { classId = classId });
+            }
+
+            return RedirectToAction("Index", "Login");
         }
 
         public ActionResult Mine()

@@ -14,7 +14,7 @@
 </div>
 <div>
     <b>Date: </b>
-    @Html.DisplayFor(model => model.Date)
+    @Html.DisplayDateOnlyFor(model => model.Date)
 </div>
 <div>
     <b>Description: </b>
@@ -25,13 +25,18 @@
 
 <h3>Registered Students</h3>
 
-@if (Session["currentUser"] is Student currentUser && Model.Students.Contains(currentUser, new StudentComparer()))
+@if (Session["currentUser"] != null)
 {
-    @Html.ActionLink("Unregister", "Unregister")
-}
-else
-{
-    @Html.ActionLink("Register", "Register")
+    <div style="margin: 10px">
+        @if (Session["currentUser"] is Student currentUser && Model.Students.Contains(currentUser, new StudentComparer()))
+        {
+            @Html.ActionLink("Unregister", "Unregister", "Class",  new { classId = Model.Id }, new { @class = "btn btn-primary" })
+        }
+        else
+        {
+            @Html.ActionLink("Register", "Register", "Class", new { classId = Model.Id }, new { @class = "btn btn-primary" })
+        }
+    </div>
 }
 
 <table class="table">

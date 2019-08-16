@@ -25,8 +25,6 @@ namespace Assignment08
             RegisterAutofac();
         }
 
-
-
         private void RegisterAutofac()
         {
             var builder = new ContainerBuilder();

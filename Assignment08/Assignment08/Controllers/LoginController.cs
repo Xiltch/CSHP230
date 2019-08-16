@@ -73,7 +73,19 @@ namespace Assignment08.Controllers
             return RedirectToAction("Index");
         }
 
+
+        [HttpGet]
         public ActionResult Logout()
+        {
+            if (this.Session["currentUser"] is Models.Student user)
+            {
+                return View(user); 
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult LoggedOut()
         {
             this.Session.Remove("currentUser");
 

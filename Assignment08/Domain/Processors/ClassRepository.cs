@@ -122,9 +122,56 @@ namespace Assignment08.Domain.Processors
 
         }
 
-        public IEnumerable<IClass> RegisterForClass(int classId, int studentId)
+        public void RegisterForClass(int classId, int studentId)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (SqlCommand command = new SqlCommand("pInsClassStudents", connection))
+            {
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                var RetVal = command.Parameters.Add("RetVal", SqlDbType.Int);
+                RetVal.Direction = ParameterDirection.ReturnValue;
+
+                command.Parameters.AddWithValue("@ClassId", classId);
+                command.Parameters.AddWithValue("@StudentId", studentId);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (SqlException e)
+                {
+                    throw new UpdateException($"Failed to register student id {studentId} for class id {classId} - {e.Message}");
+                }
+
+            }
+        }
+
+        public void DeRegisterFromClass(int classId, int studentId)
+        {
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (SqlCommand command = new SqlCommand("pDelClassStudents", connection))
+            {
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                var RetVal = command.Parameters.Add("RetVal", SqlDbType.Int);
+                RetVal.Direction = ParameterDirection.ReturnValue;
+
+                command.Parameters.AddWithValue("@ClassId", classId);
+                command.Parameters.AddWithValue("@StudentId", studentId);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (SqlException e)
+                {
+                    throw new UpdateException($"Failed to deregister student id {studentId} from class id {classId} - {e.Message}");
+                }
+
+            }
         }
     }
 }

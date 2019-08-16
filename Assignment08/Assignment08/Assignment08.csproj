@@ -156,6 +156,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HtmlExtensions.cs" />
     <Compile Include="Helpers\StudentComparer.cs" />
     <Compile Include="Models\Class.cs" />
     <Compile Include="Models\Student.cs" />
@@ -187,6 +188,7 @@
     <Content Include="Views\Error\Code.cshtml" />
     <Content Include="Views\Login\LoggedIn.cshtml" />
     <Content Include="Views\Class\Details.cshtml" />
+    <Content Include="Views\Login\Logout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -4,7 +4,7 @@
     ViewBag.Title = "LoggedIn";
 }
 
-<h2>You are already logged in - @Model.Login</h2>
+<h2>You are logged in - @Model.Login</h2>
 
-@Html.ActionLink("Logout", "Logout", "Login", null, new { @class = "btn btn-primary" })
+@Html.ActionLink("Logout", "LoggedOut", "Login", null, new { @class = "btn btn-primary" })
 

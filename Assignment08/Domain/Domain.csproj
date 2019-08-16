@@ -48,6 +48,7 @@
     <Compile Include="Exceptions\DataReadException.cs" />
     <Compile Include="Exceptions\GeneralException.cs" />
     <Compile Include="Exceptions\StudentNotFoundException.cs" />
+    <Compile Include="Exceptions\UpdateException.cs" />
     <Compile Include="Interfaces\IClass.cs" />
     <Compile Include="Interfaces\IClassRepository.cs" />
     <Compile Include="Interfaces\IConfigOption.cs" />
