@@ -100,5 +100,10 @@ namespace Assignment08.Domain.Processors
 
             throw new StudentNotFoundException($"Did not find a record for the student id {StudentId}");
         }
+
+        public int NewLogin(ILoginRequest request)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

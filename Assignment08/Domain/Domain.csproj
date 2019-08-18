@@ -70,6 +70,7 @@
     <Compile Include="Interfaces\IClass.cs" />
     <Compile Include="Interfaces\IClassRepository.cs" />
     <Compile Include="Interfaces\IConfigOption.cs" />
+    <Compile Include="Interfaces\ILoginRequest.cs" />
     <Compile Include="Interfaces\IStudent.cs" />
     <Compile Include="Interfaces\IStudentRepository.cs" />
     <Compile Include="Processors\ClassRepository.cs" />

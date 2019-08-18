@@ -27,8 +27,7 @@ namespace Assignment08.Controllers
 
         public ActionResult Details(int classId)
         {
-            var classInfo = context.GetClasses()
-                .FirstOrDefault(x => x.Id == classId);
+            var classInfo = context.ClassDetails(classId);
 
             return View(new Class(classInfo));
         }

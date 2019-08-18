@@ -10,6 +10,7 @@ namespace Assignment08.Domain.Interfaces
     {
         IEnumerable<IClass> GetClasses();
         IEnumerable<IClass> GetClasses(int studentId);
+        IClass ClassDetails(int classId);
         void RegisterForClass(int classId, int studentId);
         void DeRegisterFromClass(int classId, int studentId);
 

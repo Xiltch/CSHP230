@@ -93,9 +93,17 @@ namespace Assignment08.Controllers
         }
 
         [ActionName("Request")]
+        [HttpGet]
         public ActionResult RequestLogin()
         {
-            return View("RequestLogin");
+            return View();
+        }
+
+        [ActionName("Request")]
+        [HttpPost]
+        public ActionResult RequestLogin(LoginRequest request)
+        {
+            return View();
         }
     }
 }

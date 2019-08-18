@@ -25,44 +25,92 @@ namespace Assignment08.Domain.Processors
             // TODO need to fix issue in stored procedure only returning classes that have at least one student registered
 
             using (SqlConnection connection = new SqlConnection(ConnectionString))
-            using (SqlCommand command = new SqlCommand("pSelClassesByStudents", connection))
+            using (SqlCommand command = new SqlCommand("SELECT * FROM vClasses", connection))
             {
-                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.CommandType = System.Data.CommandType.Text;
 
                 try
                 {
                     connection.Open();
                     var reader = command.ExecuteReader();
 
-                    var items = new Dictionary<int,IClass>();
+                    var items = new List<IClass>();
 
                     while (reader.Read())
                     {
                         var classId = int.Parse(reader["ClassId"].ToString());
-                        var studentId = reader["StudentId"];
-                            
-                        IClass item;
 
-                        if (!items.ContainsKey(classId))
+                        IClass item = new Class()
                         {
-                             item = new Class()
-                             {
-                                 Id = classId,
-                                 Name = reader["ClassName"].ToString(),
-                                 Description = reader["ClassDescription"].ToString(),
-                                 Date = DateTime.Parse(reader["ClassDate"].ToString())
-                             };
+                            Id = classId,
+                            Name = reader["ClassName"].ToString(),
+                            Description = reader["ClassDescription"].ToString(),
+                            Date = DateTime.Parse(reader["ClassDate"].ToString())
+                        };
 
-                            items.Add(classId, item);
+                        items.Add(item);
+                    }
+
+                    return items;
+                }
+                catch (SqlException e)
+                {
+                    throw new GeneralException($"Something went wrong - {e.Message}");
+                }
+
+            }
+        }
+
+        public IClass ClassDetails(int classId)
+        {
+
+            #region View Select Query to include Empty Classes
+            string sqlQuery = @"SELECT
+ C.ClassId,
+ C.ClassName,
+ C.ClassDate,
+ C.ClassDescription,
+ S.StudentId,
+ S.StudentName,
+ S.StudentEmail
+
+FROM vClasses C
+LEFT JOIN vClassesByStudents S ON C.ClassId = S.ClassId
+WHERE C.ClassId = @ClassId";
+            #endregion
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (SqlCommand command = new SqlCommand(sqlQuery, connection))
+            {
+                command.CommandType = System.Data.CommandType.Text;
+
+                try
+                {
+                    command.Parameters.AddWithValue("@ClassId", classId);
+
+                    connection.Open();
+                    var reader = command.ExecuteReader();
+
+                    IClass item = null;
+
+                    while (reader.Read())
+                    {
+                        var studentId = reader["StudentId"];
+
+                        if (item is null)
+                        {
+                            item = new Class()
+                            {
+                                Id = classId,
+                                Name = reader["ClassName"].ToString(),
+                                Description = reader["ClassDescription"].ToString(),
+                                Date = DateTime.Parse(reader["ClassDate"].ToString())
+                            };
 
                             item.Students = new List<IStudent>();
                         }
-                        else
-                        {
-                            item = items[classId];
-                        }
 
-                        if (studentId != null)
+                        if (studentId is int)
                         {
                             var student = new Student()
                             {
@@ -74,7 +122,7 @@ namespace Assignment08.Domain.Processors
                         }
                     }
 
-                    return items.Select(x => x.Value);
+                    return item;
                 }
                 catch (SqlException e)
                 {
