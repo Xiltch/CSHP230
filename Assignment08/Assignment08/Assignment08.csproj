@@ -335,7 +335,7 @@
     <Compile Include="Helpers\HtmlExtensions.cs" />
     <Compile Include="Helpers\StudentComparer.cs" />
     <Compile Include="Models\Class.cs" />
-    <Compile Include="Models\LoginRequest.cs" />
+    <Compile Include="Models\Request.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -368,6 +368,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Class\_Classes.cshtml" />
     <Content Include="Views\Login\Request.cshtml" />
+    <Content Include="Views\Login\RequestSent.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

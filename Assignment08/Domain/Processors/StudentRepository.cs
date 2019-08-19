@@ -103,7 +103,44 @@ namespace Assignment08.Domain.Processors
 
         public int NewLogin(ILoginRequest request)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            using (SqlCommand command = new SqlCommand("pInsLoginRequests", connection))
+            {
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                var RetVal = command.Parameters.Add("RetVal", SqlDbType.Int);
+                RetVal.Direction = ParameterDirection.ReturnValue;
+
+                command.Parameters.AddWithValue("@Name", request.Name);
+                command.Parameters.AddWithValue("@EmailAddress", request.EmailAddress);
+                command.Parameters.AddWithValue("@LoginName", request.LoginName);
+                command.Parameters.AddWithValue("@NewOrReactivate", request.NewOrReactivate);
+                command.Parameters.AddWithValue("@ReasonForAccess", request.ReasonForAccess);
+                command.Parameters.AddWithValue("@DateRequiredBy", request.DateRequiredBy);
+
+                command.Parameters.Add("@LoginID", SqlDbType.Int);
+
+                command.Parameters["@LoginID"].Direction = ParameterDirection.Output;
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (SqlException e)
+                {
+                    throw new UpdateException($"Failed to submit login request - {e.Message}");
+                }
+
+                var result = (int)RetVal.Value;
+
+                if ((int)result == 100)
+                {
+                    return (int)command.Parameters["@LoginID"].Value;
+                }
+            }
+
+            throw new UpdateException($"Failed to submit login request");
         }
     }
 }

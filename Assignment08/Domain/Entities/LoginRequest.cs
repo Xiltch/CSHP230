@@ -1,24 +1,20 @@
-﻿using System;
+﻿using Assignment08.Domain.Interfaces;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Assignment08.Models
+namespace Assignment08.Domain.Entities
 {
-    public class LoginRequest
+    public class LoginRequest : ILoginRequest
     {
         public int LoginId { get; set; }
         public string Name { get; set; }
-        [Display(Name = "Email Address")]
         public string EmailAddress { get; set; }
-        [Display(Name = "Login Name")]
         public string LoginName { get; set; }
-        [Display(Name="Type")]
         public string NewOrReactivate { get; set; }
-        [Display(Name = "Reason for Access")]
         public string ReasonForAccess { get; set; }
-        [Display(Name = "Date required by")]
         public DateTime DateRequiredBy { get; set; }
     }
 }

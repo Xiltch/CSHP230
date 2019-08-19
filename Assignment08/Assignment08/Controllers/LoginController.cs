@@ -55,7 +55,8 @@ namespace Assignment08.Controllers
                     return View();
                 }
 
-            } catch (AuthenticationException e)
+            }
+            catch (AuthenticationException e)
             {
                 ModelState.AddModelError("", e.Message);
                 return View();
@@ -79,7 +80,7 @@ namespace Assignment08.Controllers
         {
             if (this.Session["currentUser"] is Models.Student user)
             {
-                return View(user); 
+                return View(user);
             }
 
             return RedirectToAction("Index");
@@ -101,9 +102,22 @@ namespace Assignment08.Controllers
 
         [ActionName("Request")]
         [HttpPost]
-        public ActionResult RequestLogin(LoginRequest request)
+        public ActionResult RequestLogin(Request request)
         {
-            return View();
+            if (!ModelState.IsValid)
+                return View("Request");
+
+            this.context.NewLogin(new LoginRequest()
+            {
+                Name = request.Name,
+                LoginName = request.LoginName,
+                EmailAddress = request.EmailAddress,
+                NewOrReactivate = request.NewOrReactivate,
+                ReasonForAccess = request.ReasonForAccess,
+                DateRequiredBy = request.DateRequiredBy
+            });
+
+            return View("RequestSent");
         }
     }
 }
